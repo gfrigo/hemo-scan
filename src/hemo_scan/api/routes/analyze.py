@@ -11,9 +11,9 @@ router = APIRouter()
 async def analyze(image: UploadFile = File(...)) -> Analysis:
     mime = image.content_type or ""
     if not mime.startswith("image/"):
-        raise HTTPException(415, "Envie uma imagem")
+        raise HTTPException(415, "An image file is required")
 
     try:
         return llm.analyze(await image.read(), mime)
     except ValidationError as err:
-        raise HTTPException(502, "Resposta invalida do modelo") from err
+        raise HTTPException(502, "Model returned a response outside the schema") from err

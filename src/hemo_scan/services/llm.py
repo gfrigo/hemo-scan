@@ -16,11 +16,11 @@ def analyze(image: bytes, mime: str = "image/jpeg") -> Analysis:
         model=settings.llm_model,
         response_format={"type": "json_object"},
         messages=[
-            {"role": "system", "content": f"{prompt}\n\nResponda em JSON com este schema:\n{schema}"},
+            {"role": "system", "content": f"{prompt}\n\nAnswer in JSON matching this schema:\n{schema}"},
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "Avalie esta amostra."},
+                    {"type": "text", "text": "Assess this sample."},
                     {
                         "type": "image_url",
                         "image_url": {"url": f"data:{mime};base64,{base64.b64encode(image).decode()}"},
