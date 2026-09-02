@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
-from hemo_scan.api.routes import health
+from hemo_scan.api.routes import analyze, health
 
 app = FastAPI(title="hemo-scan")
 app.include_router(health.router)
+app.include_router(analyze.router)
